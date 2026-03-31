@@ -1,0 +1,52 @@
+# Laravel
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/pail
+/storage/logs
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/views
+
+# Environment files
+.env
+.env.backup
+.env.*.backup
+.phpunit.result.cache
+
+# Composer
+/composer.lock
+
+# NPM / Yarn
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# IDEs & Editors
+/.idea
+/.vscode
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS Files
+Thumbs.db
+
+# PHPUnit
+coverage/
+.phpunit.cache
+
+# Debug tools
+/public/debugbar
+
+# Logs
+*.log
+
+# Docker (optional if you're using it)
+docker-compose.override.yml
+
+# Misc
+*.sqlite
+*.bak

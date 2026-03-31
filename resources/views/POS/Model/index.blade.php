@@ -1,0 +1,74 @@
+@extends('Layouts.erp_master')
+@section('content')
+<?php 
+use App\Services\RoleService as Role;
+?>
+<!-- Page -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table w-full table-hover table-bordered table-striped dataTable" data-plugin="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width:3%;">SL</th>
+                        <th>Model</th>
+                        <th>Group</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <!-- <th>Brand</th> -->
+                        <!-- <th>Details</th> -->
+                        <!-- <th>Company Name</th> -->
+                        <th style="width:10%;" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i= 0; ?>
+                    @foreach ($PModelData as $Row)
+                    <tr>
+                        <td scope="row"> {{++$i}}</td>
+                        <td> {{$Row->model_name}}</td>
+                        <td> {{$Row->pgroup['group_name'] }}</td>
+                        <td> {{$Row->pcategory['cat_name'] }}</td>
+                        <td> {{$Row->psubcategory['sub_cat_name'] }}</td>
+                        <!-- <td> {{--  $Row->pbrand['brand_name'] --}}</td> -->
+                        <!-- <td class="text-left">
+                            <p><b>Category:</b>{{-- $Row->pcategory['cat_name'] --}}</p>
+                            <p><b>Sub Category:</b>{{-- $Row->psubcategory['sub_cat_name'] --}}</p>
+                            <p><b>Brand :</b>{{-- $Row->pbrand->brand_name --}}</p>
+                        </td> -->
+                        <td class="text-center">
+                            <!-- Action Calling Role Wise -->
+                            {!! Role::roleWisePermission($GlobalRole, $Row->id) !!}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+
+<script>
+function fnDelete(RowID) {
+    /**
+     * para1 = link to delete without id
+     * para 2 = ajax check link same for all
+     * para 3 = id of deleting item
+     * para 4 = matching column
+     * para 5 = table 1
+     * para 6 = table 2
+     * para 7 = table 3
+     */
+
+    fnDeleteCheck(
+        "{{url('pos/model/delete/')}}",
+        "{{url('/ajaxDeleteCheck')}}",
+        RowID,
+        "{{base64_encode('prod_model_id')}}",
+        "{{base64_encode('is_delete,0')}}",
+        "{{base64_encode('pos_p_sizes')}}"
+    );
+}
+</script>
+@endsection

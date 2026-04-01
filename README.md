@@ -340,3 +340,4 @@ docker compose up -d --build
 ```
 
 > **Warning:** The `-v` flag deletes the database volume. All database data will be lost.
+> If you have any questions, email me - farhanisrak.yen29@gmail.com
